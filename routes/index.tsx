@@ -5,6 +5,7 @@ import { Handlers } from "$fresh/server.ts";
 import NotesContainer from "../islands/NotesContainer.tsx";
 import { getNotes, NoteT } from "../utils/notes.ts";
 import { State } from "../utils/state.ts";
+import NotesNotFound from "../components/NotesNotFound.tsx";
 
 export interface Data extends State {
   notes: NoteT[];
@@ -19,6 +20,10 @@ export const handler: Handlers<Data, State> = {
 
 export default function Home(props: PageProps<Data>) {
   const { notes } = props.data;
+
+  if (notes.length === 0) {
+    return <NotesNotFound />;
+  }
 
   return (
     <>
