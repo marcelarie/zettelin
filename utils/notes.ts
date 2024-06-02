@@ -34,6 +34,7 @@ async function getNote(fileName: string): Promise<NoteT | null> {
   const text = await Deno.readTextFile(join("./notes", fileName));
   const stat = await Deno.stat(join("./notes", fileName));
   const modifiedAt = stat.mtime || new Date();
+  // TODO: Check why birthtime is the same as mtime
   const publishedAt = stat.birthtime || new Date();
   const title = getMarkdownTitle(text);
 

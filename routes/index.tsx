@@ -30,8 +30,10 @@ export default function Home(props: PageProps<Data>) {
       <Head>
         <style dangerouslySetInnerHTML={{ __html: CSS }} />
       </Head>
-      <div class="text-white bg-black flex items-center justify-center min-h-screen">
-        <NotesContainer notes={notes} />
+      <div class="bg-gray-900 min-h-screen">
+        <div class="text-white bg-black flex items-center justify-center max-w-lg mx-auto">
+          <NotesContainer notes={notes} />
+        </div>
       </div>
     </>
   );
