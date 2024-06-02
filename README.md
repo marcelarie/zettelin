@@ -1,7 +1,8 @@
 # Zettelin
 
 Zettelin is a simple web application that renders all the Markdown files in a
-specified directory. It provides an easy way to view and manage your notes
+specified directory.   
+It provides an easy way to view and manage your notes
 directly from the web browser.
 
 I point it to my notes directory with a symlink.
