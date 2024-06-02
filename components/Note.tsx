@@ -13,9 +13,9 @@ export default function Note({ note }: Props) {
 
   return (
     <>
-      <div class="bg-gray-800 p-4 mb-4 rounded-lg shadow-lg">
+      <div class="p-4 mb-4 rounded-lg shadow-lg">
         <div
-          class="markdown-body bg-gray-800 text-white text-lg font-sans p-4 rounded shadow-lg overflow-x-auto"
+          class="markdown-body text-white text-lg font-sans p-4 rounded-lg shadow-lg"
           data-color-mode="dark"
           data-dark-theme="dark"
           dangerouslySetInnerHTML={{ __html: syntaxHighlightedHtml }}

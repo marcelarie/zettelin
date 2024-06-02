@@ -7,7 +7,7 @@ type Props = {
 
 export default function NotesContainer({ notes }: Props) {
   return (
-    <div class="bg-gray-900 p-6">
+    <div class="bg-black p-6">
       {notes.map((note: NoteT) => <Note note={note} />)}
     </div>
   );

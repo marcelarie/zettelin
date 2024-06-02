@@ -18,10 +18,12 @@ const CustomCSS = CSS.concat(
     margin-bottom: 0.5rem;
     padding: 0.5rem;
     padding-bottom: 0.3rem;
-  }`,
+  }
+  `,
 );
 
 const twindCSS = css({
+  backgroundColor: "#000",
   ".markdown-body": {
     paddingLeft: "3rem",
     paddingRight: "3rem",
@@ -34,6 +36,9 @@ const twindCSS = css({
   },
   ".markdown-body > pre": {
     border: "1px solid #333",
+  },
+  ".markdown-body pre": {
+    background: "#000 !important",
   },
 });
 
@@ -57,10 +62,10 @@ export default function Home(props: PageProps<Data>) {
         <style dangerouslySetInnerHTML={{ __html: CustomCSS }} />
         <link
           rel="stylesheet"
-          href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/dark.min.css"
+          href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/base16/apprentice.min.css"
         />
       </Head>
-      <div class={`${twindCSS} bg-gray-900 min-h-screen`}>
+      <div class={`${twindCSS} min-h-screen`}>
         <div class="text-white bg-black flex items-center justify-center max-w-lg mx-auto">
           <NotesContainer notes={notes} />
         </div>
