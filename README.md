@@ -1,11 +1,11 @@
 # Zettelin
 
-Zettelin is a simple web application that renders all the Markdown files in a
-specified directory.   
-It provides an easy way to view and manage your notes
-directly from the web browser.
+Zettelin is an excuse to learn [Fresh](https://github.com/denoland/fresh) and [Deno](https://github.com/denoland/deno/). \
 
-I point it to my notes directory with a symlink.
+It renders all the Markdown files in a specified directory, providing an easy way 
+to view and manage your notes directly from the web browser.
+
+I point it to my notes directory with a symlink:
 
 ```bash
 git clone https://github.com/marcelarie/zettelin
