@@ -16,7 +16,7 @@ Still in really early development.
 
 ## Todo
 - [x] Show notes in the landing page
-- [ ] Markdown code block syntax highlighting
+- [x] Markdown code block syntax highlighting
 - [ ] Better CSS
 - [ ] Allow to manage the notes from the frontend 
     - [ ] Check https://docs.deno.com/runtime/manual/basics/permissions
