@@ -1,4 +1,5 @@
 import { join } from "$std/path/mod.ts";
+import { assertEquals } from "$std/assert/assert_equals.ts";
 
 export interface NoteT {
   content: string;
@@ -65,3 +66,28 @@ export async function getNotes(): Promise<NoteT[]> {
 
   return sortedNotes;
 }
+
+Deno.test("get markdown title", () => {
+  const content = "# Title";
+  assertEquals(getMarkdownTitle(content), "Title");
+});
+
+Deno.test("sort by date", () => {
+  const notes = [
+    {
+      content: "",
+      modifiedAt: new Date("2021-01-01"),
+      publishedAt: new Date("2021-01-01"),
+      title: "",
+    },
+    {
+      content: "",
+      modifiedAt: new Date("2021-01-02"),
+      publishedAt: new Date("2021-01-02"),
+      title: "",
+    },
+  ];
+  const sortedNotes = sortByDate(notes, "published_at");
+  assertEquals(sortedNotes[0].publishedAt, new Date("2021-01-02"));
+  assertEquals(sortedNotes[1].publishedAt, new Date("2021-01-01"));
+});
