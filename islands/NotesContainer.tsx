@@ -1,18 +1,15 @@
-import { Note } from "../utils/notes.ts";
+import { NoteT } from "../utils/notes.ts";
+import Note from "../components/Note.tsx";
 
 type Props = {
-  notes: Note[];
+  notes: NoteT[];
 };
 
 export default function NotesContainer({ notes }: Props) {
   return (
     <div class="bg-gray-900 p-6">
-      {notes.map((note: Note) => (
-        <div class="bg-gray-800 p-4 mb-4">
-          <h2 class="text-2xl font-bold">{note.title}</h2>
-          <body>{note.content}</body>
-          <p class="text-gray-400">This is a note</p>
-        </div>
+      {notes.map((note: NoteT) => (
+        <Note note={note} />
       ))}
     </div>
   );

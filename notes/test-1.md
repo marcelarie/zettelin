@@ -67,3 +67,8 @@ A link to an image placeholder. Yeah, I know...
 
 Just in case we need some extra boldness around here...
 
+```python
+for i in range(10):
+    print(i)
+```
+
