@@ -5,9 +5,30 @@ type Props = {
   note: NoteT;
 };
 
+function formatDate(date: Date) {
+  const day = String(date.getDate()).padStart(2, "0");
+  const month = String(date.getMonth() + 1).padStart(2, "0"); // Months are zero-indexed
+  const year = date.getFullYear();
+  const hours = String(date.getHours()).padStart(2, "0");
+  const minutes = String(date.getMinutes()).padStart(2, "0");
+
+  return `${day}/${month}/${year} - ${hours}:${minutes}`;
+}
+
 export default function Note({ note }: Props) {
   return (
     <div class="bg-gray-800 p-4 mb-4">
+      <div class="flex justify-left items-center mb-4">
+        <div class="flex justify-left items-center mr-4">
+          <p class="mr-1">Created at:</p>
+          <p class="text-gray-400">{formatDate(note.publishedAt)}</p>
+        </div>
+        <div class="flex justify-left items-center">
+          <p class="mr-1">Modified at:</p>
+          <p class="text-gray-400">{formatDate(note.modifiedAt)}</p>
+        </div>
+      </div>
+
       <div
         class="markdown-body bg-gray-800 text-white text-lg font-sans p-4 rounded-lg shadow-lg overflow-x-auto"
         data-color-mode="dark"

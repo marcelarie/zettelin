@@ -1,24 +1,51 @@
-import { extract } from "https://deno.land/std@0.145.0/encoding/front_matter.ts";
 import { join } from "$std/path/mod.ts";
 
 export interface NoteT {
-  slug: string;
-  title: string;
-  published_at: Date;
   content: string;
-  snippet: string;
+  modifiedAt: Date;
+  publishedAt: Date;
+  title: string;
 }
 
-async function getNote(slug: string): Promise<NoteT | null> {
-  const text = await Deno.readTextFile(join("./notes", `${slug}.md`));
-  const { attrs, body } = extract<NoteT>(text);
+const sortByDate = (
+  notes: NoteT[],
+  mode: "published_at" | "modified_at",
+): NoteT[] => {
+  if (mode === "published_at") {
+    return notes.sort(
+      (a, b) => b.publishedAt.getTime() - a.publishedAt.getTime(),
+    );
+  } else {
+    return notes.sort(
+      (a, b) => b.modifiedAt.getTime() - a.modifiedAt.getTime(),
+    );
+  }
+};
+
+const getMarkdownTitle = (content: string): string => {
+  const match = content.match(/^#\s+(.*)/);
+  if (match) {
+    return match[1];
+  }
+  return "";
+};
+
+async function getNote(fileName: string): Promise<NoteT | null> {
+  const text = await Deno.readTextFile(join("./notes", fileName));
+  const stat = await Deno.stat(join("./notes", fileName));
+  const modifiedAt = stat.mtime || new Date();
+  const publishedAt = stat.birthtime || new Date();
+  const title = getMarkdownTitle(text);
+
+  if (!text) {
+    return null;
+  }
 
   return {
-    slug,
-    title: attrs.title,
-    published_at: new Date(attrs.published_at),
-    content: body,
-    snippet: attrs.snippet,
+    content: text,
+    modifiedAt: modifiedAt,
+    publishedAt: publishedAt,
+    title: title,
   };
 }
 
@@ -26,10 +53,14 @@ export async function getNotes(): Promise<NoteT[]> {
   const files = Deno.readDir("./notes");
   const promises = [];
   for await (const file of files) {
-    const slug = file.name.replace(".md", "");
-    promises.push(getNote(slug));
+    if (file.name.endsWith(".md")) {
+      promises.push(getNote(file.name));
+    }
   }
+
   const notes = (await Promise.all(promises)) as NoteT[];
-  notes.sort((a, b) => b.published_at.getTime() - a.published_at.getTime());
-  return notes;
+  const cleanNotes = notes.filter((note) => note !== null);
+  const sortedNotes = sortByDate(cleanNotes, "published_at");
+
+  return sortedNotes;
 }
