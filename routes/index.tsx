@@ -2,7 +2,7 @@ import { CSS } from "@deno/gfm";
 import { Head } from "$fresh/runtime.ts";
 import { PageProps } from "$fresh/server.ts";
 import { Handlers } from "$fresh/server.ts";
-import NotesContainer from "../islands/NotesContainer.tsx";
+import NotesContainer from "../components/NotesContainer.tsx";
 import { getNotes, NoteT } from "../utils/notes.ts";
 import { State } from "../utils/state.ts";
 import NotesNotFound from "../components/NotesNotFound.tsx";
