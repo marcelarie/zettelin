@@ -1,6 +1,6 @@
 # Zettelin
 
-Zettelin is an excuse to learn [Fresh](https://github.com/denoland/fresh) and [Deno](https://github.com/denoland/deno/). \
+Zettelin is an excuse to learn [Fresh](https://github.com/denoland/fresh) and [Deno](https://github.com/denoland/deno/).   
 
 It renders all the Markdown files in a specified directory, providing an easy way 
 to view and manage your notes directly from the web browser.
