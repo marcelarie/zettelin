@@ -7,7 +7,7 @@ to view and manage your notes directly from the web browser.
 
 I point it to my notes directory with a symlink:
 
-```bash
+```shell
 git clone https://github.com/marcelarie/zettelin
 cd zeppelin
 ln -s ~/your-notes/ notes
